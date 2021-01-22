@@ -1,0 +1,83 @@
+name: Update AppleALC
+on: 
+  push:
+    branches:
+    - master
+  schedule:
+  - cron: '0 */4 * * *'
+
+env:
+  repository_name: AppleALC
+  repository_owner: acidanthera
+
+jobs:
+  update-adblock-rules-then-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@mian
+
+      - name: Get Latest Release Tag
+        id: get_latest_release_Tag
+        uses: octokit/graphql-action@v2.x
+        with:
+          query: |
+            query release($owner:String!,$repo:String!) {
+                repository(owner:$owner,name:$repo) {
+                    releases(first: 1, orderBy: {field: CREATED_AT, direction: DESC}) {
+                        nodes {
+                            tagName
+                        }
+                    }
+                }
+            }
+          owner: ${{env.repository_owner}}
+          repo: ${{env.repository_owner}}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get Latest Release File Count
+        id: get_latest_release_File_Count
+        uses: octokit/graphql-action@v2.x
+        with:
+          query: |
+            query release($owner:String!,$repo:String!) {
+                repository(owner:$owner,name:$repo) {
+                    release(tagName:$tagName) {
+                        releaseAssets{
+                            totalCount
+                        }
+                    }
+                }
+            }
+          owner: ${{env.repository_owner}}
+          repo: ${{env.repository_owner}}
+          tagName: ${{ steps.get_latest_release_Tag.outputs.data }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get Latest Release File URL
+        id: get_latest_release_File_URL
+        uses: octokit/graphql-action@v2.x
+        with:
+          query: |
+            query release($owner:String!,$repo:String!) {
+                repository(owner:$owner,name:$repo) {
+                    release(tagName:$tagName) {
+                        releaseAssets(first:$totalCount) {
+                            nodes {
+                                downloadUrl
+                                name
+                            }
+                        }
+                    }
+                }
+            }
+          owner: ${{env.repository_owner}}
+          repo: ${{env.repository_owner}}
+          tagName: ${{ steps.get_latest_release_Tag.outputs.data }}
+          totalCount: ${{ steps.get_latest_release_File_Count.outputs.data }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - run: "echo 'latest release files: ${{ steps.get_latest_release_File_URL.outputs.data }}'"
