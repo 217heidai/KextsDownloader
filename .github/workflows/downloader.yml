@@ -70,4 +70,4 @@ jobs:
           
       - name: WeChat notification
         if: steps.push.outputs.status == 'success' && !cancelled()
-        run: curl https://sc.ftqq.com/${{ secrets.SERVERCHAN }}.send?text=OpenSSL_${{env.VERSION}}_${{env.ANDROID_ABI}}编译完成
+        run: curl https://sc.ftqq.com/${{ secrets.SERVERCHAN }}.send?text=Kexts更新完成
