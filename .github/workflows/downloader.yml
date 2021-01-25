@@ -1,4 +1,4 @@
-name: Update Kexts
+name: Update Kexts for macOS
 on: 
   push:
     branches: [ master ]
