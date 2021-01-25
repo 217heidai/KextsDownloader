@@ -1,4 +1,4 @@
-name: Download Kexts
+name: Update Kexts
 on: 
   push:
     branches: [ master ]
@@ -16,12 +16,12 @@ on:
         default: 6
 
 jobs:
-  update-adblock-rules-then-push:
+  Update_Kexts_for_macOS:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@mian
+        uses: actions/checkout@main
 
       - name: Setup Python 3.9.x
         uses: actions/setup-python@v2
