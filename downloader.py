@@ -18,6 +18,7 @@ class downloader(object):
     def __init__(self, owner, repositories):
         self.__owner = owner
         self.__repositories = repositories
+        print(TOKEN)
 
     def __findTag(self, dictData):
         queue = [dictData]
