@@ -1,6 +1,7 @@
 import os
 
 import requests
+import asyncio
 from gql import Client, gql
 from gql.transport.aiohttp import AIOHTTPTransport
 
