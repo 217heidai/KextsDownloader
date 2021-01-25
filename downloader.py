@@ -1,7 +1,8 @@
 import os
 
 import requests
-from gql import AIOHTTPTransport, Client, gql
+from gql import Client, gql
+from gql.transport.aiohttp import AIOHTTPTransport
 
 TOKEN = ''
 
