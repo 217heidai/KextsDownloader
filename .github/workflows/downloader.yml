@@ -1,14 +1,19 @@
 name: Download Kexts
 on: 
   push:
-    branches:
-    - master
+    branches: [ master ]
   schedule:
   - cron: '0 */4 * * *'
-
-env:
-  repository_name: AppleALC
-  repository_owner: acidanthera
+  workflow_dispatch:
+    inputs:
+      days:
+        description: 'Number of days.'
+        required: true
+        default: 60
+      minimum_runs:
+        description: 'The minimum runs to keep for each workflow.'
+        required: true
+        default: 6
 
 jobs:
   update-adblock-rules-then-push:
