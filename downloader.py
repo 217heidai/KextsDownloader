@@ -2,23 +2,18 @@ import os
 import sys
 
 import requests
-import asyncio
 from gql import Client, gql
 from gql.transport.aiohttp import AIOHTTPTransport
 
-TOKEN = ''
-
 class downloader(object):
-    # Select your transport with a defined url endpoint
-    transport = AIOHTTPTransport(url="https://api.github.com/graphql", headers={'Authorization': 'token %s'%(TOKEN)})
-
-    # Create a GraphQL client using the defined transport
-    client = Client(transport=transport, fetch_schema_from_transport=True)
-
-    def __init__(self, owner, repositories):
+    def __init__(self, owner, repositories, token):
         self.__owner = owner
         self.__repositories = repositories
-        print(TOKEN)
+        # Select your transport with a defined url endpoint
+        self.__transport = AIOHTTPTransport(url="https://api.github.com/graphql", headers={
+                                    'Authorization': 'token ' + token})
+        # Create a GraphQL client using the defined transport
+        self.__client = Client(transport=self.__transport, fetch_schema_from_transport=True)
 
     def __findTag(self, dictData):
         queue = [dictData]
@@ -76,7 +71,7 @@ class downloader(object):
         )
 
         try:
-            result = self.client.execute(query)
+            result = self.__client.execute(query)
             #print(result)
             tag = self.__findTag(result)
             if tag is None:
@@ -104,7 +99,7 @@ class downloader(object):
 
         # Execute the query on the transport
         try:
-            result = self.client.execute(query)
+            result = self.__client.execute(query)
             # print(result)
             totalCount = self.__findFileCount(result)
             if totalCount is None:
@@ -136,7 +131,7 @@ class downloader(object):
 
         # Execute the query on the transport
         try:
-            result = self.client.execute(query)
+            result = self.__client.execute(query)
             # print(result)
             return self.__findFileNameAndUrl(result)
         except (Exception) as e:
@@ -174,7 +169,7 @@ def RemoveKexts():  # 获取csv文件list
         os.remove(kext)
 
 if __name__ == "__main__":
-    TOKEN = sys.argv[1]
+    tocken = sys.argv[1]
     RemoveKexts()
     kextList = []
     kextList.append(kext('acidanthera', 'AppleALC'))
@@ -194,7 +189,7 @@ if __name__ == "__main__":
 
     for item in kextList:
         try:
-            new = downloader(item.owner, item.repositories)
+            new = downloader(item.owner, item.repositories, tocken)
             new.download()
         except (Exception) as e:
             print('ERROR:', e)
