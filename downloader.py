@@ -9,6 +9,7 @@ class downloader(object):
     def __init__(self, owner, repositories, token):
         self.__owner = owner
         self.__repositories = repositories
+        self.__expectNameList = []
         # Select your transport with a defined url endpoint
         self.__transport = AIOHTTPTransport(url="https://api.github.com/graphql", headers={
                                     'Authorization': 'token ' + token})
@@ -48,6 +49,8 @@ class downloader(object):
                 if key == 'nodes':
                     for item in value:
                         if len(value) == 1:
+                            return item['name'], item['downloadUrl']
+                        if item['name'] in self.__expectNameList:
                             return item['name'], item['downloadUrl']
                         if item['name'].find('RELEASE') >= 0 or item['name'].find('Release') >= 0 or item['name'].find('release') >= 0 or item['name'].find('Big_Sur') >= 0 or item['name'].find('BigSur') >= 0:
                             return item['name'], item['downloadUrl']
@@ -133,6 +136,9 @@ class downloader(object):
         try:
             result = self.__client.execute(query)
             # print(result)
+            self.__expectNameList.append("Release-%s.zip"%(tagName))
+            self.__expectNameList.append("%s-%s.zip"%(self.__repositories, tagName))
+            self.__expectNameList.append("%s-%s-RELEASE.zip"%(self.__repositories, tagName))
             return self.__findFileNameAndUrl(result)
         except (Exception) as e:
             print('ERROR:', e)
@@ -159,7 +165,7 @@ class kext(object):
         self.repositories = repositories
 
 
-def RemoveKexts():  # 获取csv文件list
+def RemoveKexts():
     kextsList = []
     for root, dirs, files in os.walk(os.getcwd()):
         for kext in files:
