@@ -4,16 +4,6 @@ on:
     branches: [ master ]
   schedule:
   - cron: 0 23 * * *
-  workflow_dispatch:
-    inputs:
-      days:
-        description: 'Number of days.'
-        required: true
-        default: 60
-      minimum_runs:
-        description: 'The minimum runs to keep for each workflow.'
-        required: true
-        default: 6
 
 env:
   TZ: Asia/Shanghai
@@ -38,7 +28,7 @@ jobs:
           pip install --pre gql[all]
 
       - name: Download Kexts
-        run: python downloader.py ${{ secrets.TOKEN }}
+        run: python downloader.py ${{ secrets.GITHUB_TOKEN }}
 
       - name: Commit Changes
         id: commit
@@ -60,13 +50,6 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.ref }}
-
-      - name: Delete workflow runs
-        uses: GitRML/delete-workflow-runs@main
-        with:
-            repository: ${{ github.repository }}
-            retain_days: ${{ github.event.inputs.days }}
-            keep_minimum_runs: ${{ github.event.inputs.minimum_runs }}
           
       - name: WeChat notification
         if: steps.push.outputs.status == 'success' && !cancelled()
