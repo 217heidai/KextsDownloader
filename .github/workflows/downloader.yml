@@ -44,7 +44,6 @@ jobs:
           fi
             
       - name: GitHub Push
-        id: push
         if: steps.commit.outputs.status == 'success' && !cancelled()
         uses: ad-m/github-push-action@master
         with:
@@ -52,5 +51,5 @@ jobs:
           branch: ${{ github.ref }}
           
       - name: WeChat notification
-        if: steps.push.outputs.status == 'success' && !cancelled()
+        if: steps.commit.outputs.status == 'success' && !cancelled()
         run: curl https://sc.ftqq.com/${{ secrets.SERVERCHAN }}.send?text=Kexts更新完成
