@@ -211,8 +211,7 @@ def CreatReadme(kextList):
         f.close()
 
 if __name__ == "__main__":
-    #tocken = sys.argv[1]
-    tocken = "1949d0c678796bf6245bee750125d40d086e09ad"
+    tocken = sys.argv[1]
     kextList = GetKextsList()
     kextListNew = []
     for item in kextList:
