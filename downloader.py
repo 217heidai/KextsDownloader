@@ -6,14 +6,12 @@ from gql import Client, gql
 from gql.transport.aiohttp import AIOHTTPTransport
 
 class downloader(object):
-    def __init__(self, owner, repositories, token):
-        self.__owner = owner
-        self.__repositories = repositories
-        self.__expectNameList = []
-        # Select your transport with a defined url endpoint
-        self.__transport = AIOHTTPTransport(url="https://api.github.com/graphql", headers={
-                                    'Authorization': 'token ' + token})
-        # Create a GraphQL client using the defined transport
+    def __init__(self, kext, token):
+        self.__owner = kext.owner
+        self.__repositories = kext.repositories
+        self.__latestRelease = kext.latestRelease
+        self.__files = kext.files
+        self.__transport = AIOHTTPTransport(url="https://api.github.com/graphql", headers={'Authorization': 'token ' + token})
         self.__client = Client(transport=self.__transport, fetch_schema_from_transport=True)
 
     def __findTag(self, dictData):
@@ -42,28 +40,24 @@ class downloader(object):
         return None
 
     def __findFileNameAndUrl(self, dictData):
+        fileList = {}
         queue = [dictData]
         while len(queue) > 0:
             data = queue.pop()
             for key, value in data.items():
                 if key == 'nodes':
                     for item in value:
-                        if len(value) == 1:
-                            return item['name'], item['downloadUrl']
-                        if item['name'] in self.__expectNameList:
-                            return item['name'], item['downloadUrl']
-                        if item['name'].find('RELEASE') >= 0 or item['name'].find('Release') >= 0 or item['name'].find('release') >= 0 or item['name'].find('Big_Sur') >= 0 or item['name'].find('BigSur') >= 0:
-                            return item['name'], item['downloadUrl']
+                        fileList[item['name']] = item['downloadUrl']
                 elif type(value) == dict:
                     queue.append(value)
-        return None
+        return fileList
 
     def __queryLatestTag(self):
         query = gql(
             """
             query {
                 repository(name: "%s", owner: "%s") {
-                    releases(first: 2, orderBy: {field: CREATED_AT, direction: DESC}) {
+                    releases(first: 1, orderBy: {field: CREATED_AT, direction: DESC}) {
                         nodes {
                             tagName
                         }
@@ -123,7 +117,6 @@ class downloader(object):
                             nodes {
                                 downloadUrl
                                 name
-                                size
                             }
                         }
                     }
@@ -136,9 +129,6 @@ class downloader(object):
         try:
             result = self.__client.execute(query)
             # print(result)
-            self.__expectNameList.append("Release-%s.zip"%(tagName))
-            self.__expectNameList.append("%s-%s.zip"%(self.__repositories, tagName))
-            self.__expectNameList.append("%s-%s-RELEASE.zip"%(self.__repositories, tagName))
             return self.__findFileNameAndUrl(result)
         except (Exception) as e:
             print('ERROR:', e)
@@ -149,53 +139,87 @@ class downloader(object):
         try:
             tag = self.__queryLatestTag()
             print("Release tag: %s" % (tag))
-            FileCount = self.__queryReleasesFileCount(tag)
-            name, url = self.__queryReleasesFile(tag, FileCount)
-            print("File name: %s\nURL: %s" % (name, url))
-            r = requests.get(url)
-            with open(name, "wb") as code:
-                code.write(r.content)
+            if tag > self.__latestRelease :
+                # 删除老文件
+                RemoveKexts(self.__files)
+                self.__files = ''
+
+                # 下载新文件
+                FileCount = self.__queryReleasesFileCount(tag)
+                fileList = self.__queryReleasesFile(tag, FileCount)
+                print(fileList)
+                for key,value in fileList.items():
+                    print("File: %s\nURL: %s" % (key, value))
+                    r = requests.get(value)
+                    with open(key, "wb") as code:
+                        code.write(r.content)
+                     # 更新files
+                    if len(self.__files) > 0:
+                        self.__files += ', '
+                    self.__files += '[' + key + '](' + value + ')'
+                
+                # 更新latestRelease
+                self.__latestRelease = tag
+
+            return kext(self.__owner, self.__repositories, self.__latestRelease, self.__files)
+
         except (Exception) as e:
             print('ERROR:', e)
+            return kext(self.__owner, self.__repositories, ' ', ' ')
+
+def RemoveKexts(files):
+    if os.path.exists('README.md'):
+        os.remove('README.md')
+
+    # [AppleALC-1.5.7-DEBUG.zip](https://github.com/acidanthera/AppleALC/releases/download/1.5.7/AppleALC-1.5.7-DEBUG.zip), [AppleALC-1.5.7-RELEASE.zip'](https://github.com/acidanthera/AppleALC/releases/download/1.5.7/AppleALC-1.5.7-RELEASE.zip)
+    fileList = files.split(", ")
+    for item in fileList:
+        name = item[item.find('['):item.find(']')]
+        if os.path.exists(name):
+            os.remove(name)
 
 
 class kext(object):
-    def __init__(self, owner, repositories):
-        self.owner = owner
+    def __init__(self, owner, repositories, latestRelease, files):
+        self.owner = owner 
         self.repositories = repositories
+        self.latestRelease = latestRelease
+        self.files = files
 
+def GetKextsList():
+    kextList = []
+    with open('README.md', 'r', encoding='utf-8') as f:
+        i = 0
+        for line in f:
+            if i > 1:
+                info = line[1:-2].split("|")
+                repositories = info[0].strip()
+                owner = info[1].strip()
+                latestRelease = info[2].strip()
+                files = info[3].strip()
+                kextList.append(kext(owner, repositories, latestRelease, files))
+            i += 1
+    return kextList
 
-def RemoveKexts():
-    kextsList = []
-    for root, dirs, files in os.walk(os.getcwd()):
-        for kext in files:
-            if os.path.splitext(kext)[1] == '.zip':
-                kextsList.append(os.path.join(root, kext))
-    for kext in kextsList:
-        os.remove(kext)
+def CreatReadme(kextList):
+    if not os.path.exists('README.md'):
+        f = open('README.md', 'a')
+        f.write("| Repositories | Owner | Latest release | Files                           |\n")
+        f.write("|:-------------|:------|:---------------|:--------------------------------|\n")
+        for kext in kextList:
+            f.write("| %s | %s | %s | %s |\n" % (kext.repositories, kext.owner, kext.latestRelease, kext.files))
+        f.close()
 
 if __name__ == "__main__":
     tocken = sys.argv[1]
-    RemoveKexts()
-    kextList = []
-    kextList.append(kext('acidanthera', 'AppleALC'))
-    kextList.append(kext('acidanthera', 'IntelMausi'))
-    kextList.append(kext('acidanthera', 'Lilu'))
-    kextList.append(kext('acidanthera', 'NVMeFix'))
-    kextList.append(kext('acidanthera', 'VirtualSMC'))
-    kextList.append(kext('acidanthera', 'WhateverGreen'))
-    kextList.append(kext('acidanthera', 'BrightnessKeys'))
-    kextList.append(kext('acidanthera', 'VoodooInput'))
-    kextList.append(kext('acidanthera', 'VoodooPS2'))
-    kextList.append(kext('Sniki', 'OS-X-USB-Inject-All'))
-    kextList.append(kext('Mieze', 'RTL8111_driver_for_OS_X'))
-    kextList.append(kext('VoodooI2C', 'VoodooI2C'))
-    kextList.append(kext('OpenIntelWireless', 'IntelBluetoothFirmware'))
-    kextList.append(kext('OpenIntelWireless', 'itlwm'))
-
-    for item in kextList:
+    kextList = GetKextsList()
+    kextListNew = []
+    for kext in kextList:
         try:
-            new = downloader(item.owner, item.repositories, tocken)
-            new.download()
+            new = downloader(kext, tocken)
+            kextListNew.append(new.download())
         except (Exception) as e:
             print('ERROR:', e)
+
+    # 生成README.md
+    CreatReadme()
