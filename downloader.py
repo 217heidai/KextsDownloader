@@ -156,7 +156,7 @@ class downloader(object):
                      # 更新files
                     if len(self.__files) > 0:
                         self.__files += ', '
-                    self.__files += '[' + key + '](' + value + ')'
+                    self.__files += '[' + key + '](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@master/' + key + ')'
                 
                 # 更新latestRelease
                 self.__latestRelease = tag
