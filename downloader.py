@@ -5,6 +5,14 @@ import requests
 from gql import Client, gql
 from gql.transport.aiohttp import AIOHTTPTransport
 
+class kext(object):
+    def __init__(self, owner, repositories, latestRelease, files):
+        self.owner = owner 
+        self.repositories = repositories
+        self.latestRelease = latestRelease
+        self.files = files
+
+
 class downloader(object):
     def __init__(self, kext, token):
         self.__owner = kext.owner
@@ -178,14 +186,6 @@ def RemoveKexts(files):
         if os.path.exists(name):
             os.remove(name)
 
-
-class kext(object):
-    def __init__(self, owner, repositories, latestRelease, files):
-        self.owner = owner 
-        self.repositories = repositories
-        self.latestRelease = latestRelease
-        self.files = files
-
 def GetKextsList():
     kextList = []
     with open('README.md', 'r', encoding='utf-8') as f:
@@ -214,12 +214,12 @@ if __name__ == "__main__":
     tocken = sys.argv[1]
     kextList = GetKextsList()
     kextListNew = []
-    for kext in kextList:
+    for item in kextList:
         try:
-            new = downloader(kext, tocken)
+            new = downloader(item, tocken)
             kextListNew.append(new.download())
         except (Exception) as e:
             print('ERROR:', e)
 
     # 生成README.md
-    CreatReadme()
+    CreatReadme(kextListNew)
