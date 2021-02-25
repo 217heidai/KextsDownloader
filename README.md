@@ -1,16 +1,16 @@
 | Repositories | Owner | Latest release | Files                           |
 |:-------------|:------|:---------------|:--------------------------------|
-| AppleALC | acidanthera |   |   |
-| IntelMausi | acidanthera |   |   |
-| Lilu | acidanthera |   |   |
-| NVMeFix | acidanthera |   |   |
-| VirtualSMC | acidanthera |   |   |
-| WhateverGreen | acidanthera |   |   |
-| BrightnessKeys | acidanthera |   |   |
-| VoodooInput | acidanthera |   |   |
-| VoodooPS2 | acidanthera |   |   |
-| OS-X-USB-Inject-All | Sniki |   |   |
-| RTL8111_driver_for_OS_X | Mieze |   |   |
-| VoodooI2C | VoodooI2C |   |   |
-| IntelBluetoothFirmware | OpenIntelWireless |   |   |
+| AppleALC | acidanthera | 1.5.7 | [AppleALC-1.5.7-DEBUG.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@master/AppleALC-1.5.7-DEBUG.zip), [AppleALC-1.5.7-RELEASE.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@master/AppleALC-1.5.7-RELEASE.zip) |
+| IntelMausi | acidanthera | 1.0.5 | [IntelMausi-1.0.5-DEBUG.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@master/IntelMausi-1.0.5-DEBUG.zip), [IntelMausi-1.0.5-RELEASE.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@master/IntelMausi-1.0.5-RELEASE.zip) |
+| Lilu | acidanthera | 1.5.1 | [Lilu-1.5.1-DEBUG.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@master/Lilu-1.5.1-DEBUG.zip), [Lilu-1.5.1-RELEASE.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@master/Lilu-1.5.1-RELEASE.zip) |
+| NVMeFix | acidanthera | 1.0.5 | [NVMeFix-1.0.5-DEBUG.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@master/NVMeFix-1.0.5-DEBUG.zip), [NVMeFix-1.0.5-RELEASE.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@master/NVMeFix-1.0.5-RELEASE.zip) |
+| VirtualSMC | acidanthera | 1.2.0 | [VirtualSMC-1.2.0-DEBUG.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@master/VirtualSMC-1.2.0-DEBUG.zip), [VirtualSMC-1.2.0-RELEASE.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@master/VirtualSMC-1.2.0-RELEASE.zip) |
+| WhateverGreen | acidanthera | 1.4.7 | [WhateverGreen-1.4.7-DEBUG.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@master/WhateverGreen-1.4.7-DEBUG.zip), [WhateverGreen-1.4.7-RELEASE.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@master/WhateverGreen-1.4.7-RELEASE.zip) |
+| BrightnessKeys | acidanthera | 1.0.1 | [BrightnessKeys-1.0.1-RELEASE.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@master/BrightnessKeys-1.0.1-RELEASE.zip), [BrightnessKeys-1.0.1-DEBUG.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@master/BrightnessKeys-1.0.1-DEBUG.zip) |
+| VoodooInput | acidanthera | 1.1.0 | [VoodooInput-1.1.0-DEBUG.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@master/VoodooInput-1.1.0-DEBUG.zip), [VoodooInput-1.1.0-RELEASE.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@master/VoodooInput-1.1.0-RELEASE.zip) |
+| VoodooPS2 | acidanthera | 2.2.1 | [VoodooPS2Controller-2.2.1-DEBUG.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@master/VoodooPS2Controller-2.2.1-DEBUG.zip), [VoodooPS2Controller-2.2.1-RELEASE.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@master/VoodooPS2Controller-2.2.1-RELEASE.zip) |
+| OS-X-USB-Inject-All | Sniki | v0.7.5 | [Release-v.0.7.5.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@master/Release-v.0.7.5.zip), [Debug-v.0.7.5.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@master/Debug-v.0.7.5.zip) |
+| RTL8111_driver_for_OS_X | Mieze | V2.4.0 | [RealtekRTL8111-V2.4.0.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@master/RealtekRTL8111-V2.4.0.zip) |
+| VoodooI2C | VoodooI2C | 2.6.4 | [VoodooI2C-2.6.4.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@master/VoodooI2C-2.6.4.zip), [VoodooI2C-Debug-Symbols-2.6.4.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@master/VoodooI2C-Debug-Symbols-2.6.4.zip) |
+| IntelBluetoothFirmware | OpenIntelWireless | 1.1.2 | [IntelBluetooth.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@master/IntelBluetooth.zip) |
 | itlwm | OpenIntelWireless |   |   |
