@@ -30,7 +30,7 @@ class downloader(object):
                 if key == 'nodes':
                     for item in value:
                         # print(type(item))
-                        if 'tagName' in item.keys() and item['tagName'].find('alpha') < 0:
+                        if 'tagName' in item.keys():
                             return item['tagName']
                 elif type(value) == dict:
                     queue.append(value)
@@ -204,14 +204,15 @@ def GetKextsList():
 def CreatReadme(kextList):
     if not os.path.exists('README.md'):
         f = open('README.md', 'a')
-        f.write("| Repositories | Owner | Latest release | Files                           |\n")
-        f.write("|:-------------|:------|:---------------|:--------------------------------|\n")
+        f.write("| Repositories | Developer | Latest release | Files                           |\n")
+        f.write("|:-------------|:----------|:---------------|:--------------------------------|\n")
         for kext in kextList:
             f.write("| %s | %s | %s | %s |\n" % (kext.repositories, kext.owner, kext.latestRelease, kext.files))
         f.close()
 
 if __name__ == "__main__":
-    tocken = sys.argv[1]
+    #tocken = sys.argv[1]
+    tocken = "1949d0c678796bf6245bee750125d40d086e09ad"
     kextList = GetKextsList()
     kextListNew = []
     for item in kextList:
