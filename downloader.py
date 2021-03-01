@@ -202,7 +202,7 @@ def GetKextsList():
             if i > 1:
                 info = line[1:-2].split("|")
                 repositories = info[0].strip()
-                repositories = repositories[repositories.find('[') : repositories.find(']')]
+                repositories = repositories[repositories.find('[') + 1: repositories.find(']')]
                 owner = info[1].strip()
                 latestRelease = info[2].strip()
                 files = info[3].strip()

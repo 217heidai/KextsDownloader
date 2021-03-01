@@ -1,9 +1,9 @@
 | Repositories | Developer | Latest release | Files                           |
 |:-------------|:----------|:---------------|:--------------------------------|
-| [OpenCorePkg](https://github.com/acidanthera/OpenCorePkg) | acidanthera | |  |
-| [AppleALC](https://github.com/acidanthera/AppleALC) | acidanthera | |  |
-| [IntelMausi](https://github.com/acidanthera/AppleALC) | acidanthera | | |
-| [Lilu](https://github.com/acidanthera/AppleALC) | acidanthera | | |
+| [OpenCorePkg](https://github.com/acidanthera/OpenCorePkg) | acidanthera |  |  |
+| [AppleALC](https://github.com/acidanthera/AppleALC) | acidanthera |  |  |
+| [IntelMausi](https://github.com/acidanthera/AppleALC) | acidanthera |  |  |
+| [Lilu](https://github.com/acidanthera/AppleALC) | acidanthera |  |  |
 | [NVMeFix](https://github.com/acidanthera/AppleALC) | acidanthera |  |  |
 | [VirtualSMC](https://github.com/acidanthera/AppleALC) | acidanthera |  |  |
 | [WhateverGreen](https://github.com/acidanthera/AppleALC) | acidanthera |  |  |
