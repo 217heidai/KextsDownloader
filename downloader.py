@@ -181,24 +181,27 @@ class downloader(object):
             return kext(self.__owner, self.__repositories, ' ', ' ')
 
 def RemoveKexts(files):
-    if os.path.exists('README.md'):
-        os.remove('README.md')
+    try:
+        if os.path.exists('README.md'):
+            os.remove('README.md')
 
-    if os.path.exists('OpenCore'):
-        os.mkdir('OpenCore')
-    if os.path.exists('Kexts'):
-        os.mkdir('Kexts')
+        if os.path.exists('OpenCore'):
+            os.mkdir('OpenCore')
+        if os.path.exists('Kexts'):
+            os.mkdir('Kexts')
 
-    # [AppleALC-1.5.7-DEBUG.zip](https://github.com/acidanthera/AppleALC/releases/download/1.5.7/AppleALC-1.5.7-DEBUG.zip), [AppleALC-1.5.7-RELEASE.zip'](https://github.com/acidanthera/AppleALC/releases/download/1.5.7/AppleALC-1.5.7-RELEASE.zip)
-    fileList = files.split(", ")
-    for item in fileList:
-        name = item[item.find('['):item.find(']')]
-        if name.find('OpenCore') >= 0:
-            path = 'OpenCore/' + name
-        else:
-            path = 'Kexts/' + name
-        if os.path.exists(path):
-            os.remove(path)
+        # [AppleALC-1.5.7-DEBUG.zip](https://github.com/acidanthera/AppleALC/releases/download/1.5.7/AppleALC-1.5.7-DEBUG.zip), [AppleALC-1.5.7-RELEASE.zip'](https://github.com/acidanthera/AppleALC/releases/download/1.5.7/AppleALC-1.5.7-RELEASE.zip)
+        fileList = files.split(", ")
+        for item in fileList:
+            name = item[item.find('['):item.find(']')]
+            if name.find('OpenCore') >= 0:
+                path = 'OpenCore/' + name
+            else:
+                path = 'Kexts/' + name
+            if os.path.exists(path):
+                os.remove(path)
+    except (Exception) as e:
+        print('ERROR:', e)
 
 def GetKextsList():
     kextList = []
@@ -226,7 +229,8 @@ def CreatReadme(kextList):
         f.close()
 
 if __name__ == "__main__":
-    tocken = sys.argv[1]
+    #tocken = sys.argv[1]
+    tocken = '1949d0c678796bf6245bee750125d40d086e09ad'
     kextList = GetKextsList()
     kextListNew = []
     for item in kextList:
