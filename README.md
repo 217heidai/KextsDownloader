@@ -1,16 +1,17 @@
 | Repositories | Developer | Latest release | Files                           |
 |:-------------|:----------|:---------------|:--------------------------------|
-| AppleALC | acidanthera | 1.5.7 | [AppleALC-1.5.7-DEBUG.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@main/AppleALC-1.5.7-DEBUG.zip), [AppleALC-1.5.7-RELEASE.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@main/AppleALC-1.5.7-RELEASE.zip) |
-| IntelMausi | acidanthera | 1.0.5 | [IntelMausi-1.0.5-DEBUG.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@main/IntelMausi-1.0.5-DEBUG.zip), [IntelMausi-1.0.5-RELEASE.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@main/IntelMausi-1.0.5-RELEASE.zip) |
-| Lilu | acidanthera | 1.5.1 | [Lilu-1.5.1-DEBUG.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@main/Lilu-1.5.1-DEBUG.zip), [Lilu-1.5.1-RELEASE.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@main/Lilu-1.5.1-RELEASE.zip) |
-| NVMeFix | acidanthera | 1.0.5 | [NVMeFix-1.0.5-DEBUG.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@main/NVMeFix-1.0.5-DEBUG.zip), [NVMeFix-1.0.5-RELEASE.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@main/NVMeFix-1.0.5-RELEASE.zip) |
-| VirtualSMC | acidanthera | 1.2.0 | [VirtualSMC-1.2.0-DEBUG.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@main/VirtualSMC-1.2.0-DEBUG.zip), [VirtualSMC-1.2.0-RELEASE.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@main/VirtualSMC-1.2.0-RELEASE.zip) |
-| WhateverGreen | acidanthera | 1.4.7 | [WhateverGreen-1.4.7-DEBUG.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@main/WhateverGreen-1.4.7-DEBUG.zip), [WhateverGreen-1.4.7-RELEASE.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@main/WhateverGreen-1.4.7-RELEASE.zip) |
-| BrightnessKeys | acidanthera | 1.0.1 | [BrightnessKeys-1.0.1-RELEASE.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@main/BrightnessKeys-1.0.1-RELEASE.zip), [BrightnessKeys-1.0.1-DEBUG.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@main/BrightnessKeys-1.0.1-DEBUG.zip) |
-| VoodooInput | acidanthera | 1.1.0 | [VoodooInput-1.1.0-DEBUG.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@main/VoodooInput-1.1.0-DEBUG.zip), [VoodooInput-1.1.0-RELEASE.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@main/VoodooInput-1.1.0-RELEASE.zip) |
-| VoodooPS2 | acidanthera | 2.2.1 | [VoodooPS2Controller-2.2.1-DEBUG.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@main/VoodooPS2Controller-2.2.1-DEBUG.zip), [VoodooPS2Controller-2.2.1-RELEASE.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@main/VoodooPS2Controller-2.2.1-RELEASE.zip) |
-| OS-X-USB-Inject-All | Sniki | v0.7.5 | [Release-v.0.7.5.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@main/Release-v.0.7.5.zip), [Debug-v.0.7.5.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@main/Debug-v.0.7.5.zip) |
-| RTL8111_driver_for_OS_X | Mieze | V2.4.0 | [RealtekRTL8111-V2.4.0.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@main/RealtekRTL8111-V2.4.0.zip) |
-| VoodooI2C | VoodooI2C | 2.6.5 | [VoodooI2C-Debug-Symbols-2.6.5.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@main/VoodooI2C-Debug-Symbols-2.6.5.zip), [VoodooI2C-2.6.5.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@main/VoodooI2C-2.6.5.zip) |
-| IntelBluetoothFirmware | OpenIntelWireless | 1.1.2 | [IntelBluetooth.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@main/IntelBluetooth.zip) |
-| itlwm | OpenIntelWireless | v1.3.0-alpha | [AirportItlwm-Big_Sur-v1.3.0-DEBUG-alpha-dbdbf00.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@main/AirportItlwm-Big_Sur-v1.3.0-DEBUG-alpha-dbdbf00.zip), [AirportItlwm-Catalina-v1.3.0-DEBUG-alpha-dbdbf00.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@main/AirportItlwm-Catalina-v1.3.0-DEBUG-alpha-dbdbf00.zip), [AirportItlwm-High_Sierra-v1.3.0-DEBUG-alpha-dbdbf00.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@main/AirportItlwm-High_Sierra-v1.3.0-DEBUG-alpha-dbdbf00.zip), [AirportItlwm-Mojave-v1.3.0-DEBUG-alpha-dbdbf00.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@main/AirportItlwm-Mojave-v1.3.0-DEBUG-alpha-dbdbf00.zip), [itlwm-v1.3.0-DEBUG-alpha-dbdbf00.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@main/itlwm-v1.3.0-DEBUG-alpha-dbdbf00.zip) |
+| [OpenCorePkg](https://github.com/acidanthera/OpenCorePkg) | acidanthera | |  |
+| [AppleALC](https://github.com/acidanthera/AppleALC) | acidanthera | |  |
+| [IntelMausi](https://github.com/acidanthera/AppleALC) | acidanthera | | |
+| [Lilu](https://github.com/acidanthera/AppleALC) | acidanthera | | |
+| [NVMeFix](https://github.com/acidanthera/AppleALC) | acidanthera |  |  |
+| [VirtualSMC](https://github.com/acidanthera/AppleALC) | acidanthera |  |  |
+| [WhateverGreen](https://github.com/acidanthera/AppleALC) | acidanthera |  |  |
+| [BrightnessKeys](https://github.com/acidanthera/AppleALC) | acidanthera |  |  |
+| [VoodooInput](https://github.com/acidanthera/AppleALC) | acidanthera |  |  |
+| [VoodooPS2](https://github.com/acidanthera/VoodooPS2) | acidanthera |  |  |
+| [OS-X-USB-Inject-All](https://github.com/Sniki/OS-X-USB-Inject-All) | Sniki |  |  |
+| [RTL8111_driver_for_OS_X](https://github.com/Mieze/RTL8111_driver_for_OS_X) | Mieze |  |  |
+| [VoodooI2C](https://github.com/VoodooI2C/VoodooI2C) | VoodooI2C |  |  |
+| [IntelBluetoothFirmware](https://github.com/OpenIntelWireless/IntelBluetoothFirmware) | OpenIntelWireless |  |  |
+| [itlwm](https://github.com/OpenIntelWireless/itlwm) | OpenIntelWireless |  |  |

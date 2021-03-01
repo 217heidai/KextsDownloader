@@ -30,7 +30,7 @@ class downloader(object):
                 if key == 'nodes':
                     for item in value:
                         # print(type(item))
-                        if 'tagName' in item.keys():
+                        if 'tagName' in item.keys() and item['tagName'].find('alpha') < 0:
                             return item['tagName']
                 elif type(value) == dict:
                     queue.append(value)
@@ -65,7 +65,7 @@ class downloader(object):
             """
             query {
                 repository(name: "%s", owner: "%s") {
-                    releases(first: 1, orderBy: {field: CREATED_AT, direction: DESC}) {
+                    releases(first: 2, orderBy: {field: CREATED_AT, direction: DESC}) {
                         nodes {
                             tagName
                         }
@@ -159,7 +159,11 @@ class downloader(object):
                 for key,value in fileList.items():
                     print("File: %s\nURL: %s" % (key, value))
                     r = requests.get(value)
-                    with open(key, "wb") as code:
+                    if key.find('OpenCore') >= 0:
+                        path = 'OpenCore/' + key
+                    else:
+                        path = 'Kexts/' + key
+                    with open(path, "wb") as code:
                         code.write(r.content)
                      # 更新files
                     if len(self.__files) > 0:
@@ -183,8 +187,12 @@ def RemoveKexts(files):
     fileList = files.split(", ")
     for item in fileList:
         name = item[item.find('['):item.find(']')]
-        if os.path.exists(name):
-            os.remove(name)
+        if name.find('OpenCore') >= 0:
+            path = 'OpenCore/' + name
+        else:
+            path = 'Kexts/' + name
+        if os.path.exists(path):
+            os.remove(path)
 
 def GetKextsList():
     kextList = []
@@ -194,6 +202,7 @@ def GetKextsList():
             if i > 1:
                 info = line[1:-2].split("|")
                 repositories = info[0].strip()
+                repositories = repositories[repositories.find('[') : repositories.find(']')]
                 owner = info[1].strip()
                 latestRelease = info[2].strip()
                 files = info[3].strip()
@@ -207,7 +216,7 @@ def CreatReadme(kextList):
         f.write("| Repositories | Developer | Latest release | Files                           |\n")
         f.write("|:-------------|:----------|:---------------|:--------------------------------|\n")
         for kext in kextList:
-            f.write("| %s | %s | %s | %s |\n" % (kext.repositories, kext.owner, kext.latestRelease, kext.files))
+            f.write("| [%s](https://github.com/%s/%s) | %s | %s | %s |\n" % (kext.repositories, kext.owner, kext.repositories, kext.owner, kext.latestRelease, kext.files))
         f.close()
 
 if __name__ == "__main__":
