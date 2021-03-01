@@ -158,7 +158,8 @@ class downloader(object):
                 print(fileList)
                 for key,value in fileList.items():
                     print("File: %s\nURL: %s" % (key, value))
-                    r = requests.get(value)
+                    #https://shrill-pond-3e81.hunsh.workers.dev/https://github.com/217heidai/openssl_for_android/releases/download/1.1.1j/OpenSSL_1.1.1j_arm64-v8a.tar.gz
+                    r = requests.get('https://shrill-pond-3e81.hunsh.workers.dev/' + value)
                     if key.find('OpenCore') >= 0:
                         path = 'OpenCore/' + key
                     else:
