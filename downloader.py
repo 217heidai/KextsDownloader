@@ -187,9 +187,9 @@ def RemoveKexts(files):
         if os.path.exists(pwd + '/README.md'):
             os.remove(pwd + '/README.md')
 
-        if os.path.exists(pwd + '/OpenCore'):
+        if not os.path.exists(pwd + '/OpenCore'):
             os.mkdir(pwd + '/OpenCore')
-        if os.path.exists(pwd + '/Kexts'):
+        if not os.path.exists(pwd + '/Kexts'):
             os.mkdir(pwd + '/Kexts')
 
         # [AppleALC-1.5.7-DEBUG.zip](https://github.com/acidanthera/AppleALC/releases/download/1.5.7/AppleALC-1.5.7-DEBUG.zip), [AppleALC-1.5.7-RELEASE.zip'](https://github.com/acidanthera/AppleALC/releases/download/1.5.7/AppleALC-1.5.7-RELEASE.zip)
