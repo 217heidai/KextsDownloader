@@ -224,7 +224,7 @@ def GetKextsList():
                 latestUpdate = info[2].strip()
                 latestVersion = info[3].strip()
                 files = info[4].strip()
-                kextList.append(kext(owner, repositories, latestVersion, files))
+                kextList.append(kext(owner, repositories, latestUpdate, latestVersion, files))
             i += 1
     return kextList
 
