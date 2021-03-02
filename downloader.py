@@ -1,6 +1,6 @@
 import os
 import sys
-import datetime
+import time
 
 import requests
 from gql import Client, gql
@@ -21,7 +21,7 @@ class downloader(object):
         self.__latestUpdate = kext.latestUpdate
         self.__latestVersion = kext.latestVersion
         self.__files = kext.files
-        self.__date = datetime.datetime.now().strftime('%Y/%m/%d')
+        self.__date = time.strftime("%Y/%m/%d", time.localtime())
         self.__transport = AIOHTTPTransport(url="https://api.github.com/graphql", headers={'Authorization': 'token ' + token})
         self.__client = Client(transport=self.__transport, fetch_schema_from_transport=True)
 
@@ -229,8 +229,9 @@ def GetKextsList():
     return kextList
 
 def CreatReadme(kextList):
-    if not os.path.exists('README.md'):
-        f = open('README.md', 'a')
+    pwd = os.getcwd()
+    if not os.path.exists(pwd + '/README.md'):
+        f = open(pwd + '/README.md', 'a')
         f.write("| Repositories | Developer | Latest Update | Latest Version | Files                           |\n")
         f.write("|:-------------|:----------|:--------------|:---------------|:--------------------------------|\n")
         for kext in kextList:
