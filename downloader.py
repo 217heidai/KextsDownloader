@@ -181,7 +181,7 @@ class downloader(object):
                 # 更新latestVersion
                 self.__latestVersion = tag
 
-            return kext(self.__owner, self.__repositories, self.__latestVersion, self.__files)
+            return kext(self.__owner, self.__repositories, self.__latestUpdate, self.__latestVersion, self.__files)
 
         except (Exception) as e:
             print('ERROR:', e)
