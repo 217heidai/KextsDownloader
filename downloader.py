@@ -1,24 +1,27 @@
 import os
 import sys
+import datetime
 
 import requests
 from gql import Client, gql
 from gql.transport.aiohttp import AIOHTTPTransport
 
 class kext(object):
-    def __init__(self, owner, repositories, latestRelease, files):
+    def __init__(self, owner, repositories, latestUpdate, latestVersion, files):
         self.owner = owner 
         self.repositories = repositories
-        self.latestRelease = latestRelease
+        self.latestUpdate = latestUpdate
+        self.latestVersion = latestVersion
         self.files = files
-
 
 class downloader(object):
     def __init__(self, kext, token):
         self.__owner = kext.owner
         self.__repositories = kext.repositories
-        self.__latestRelease = kext.latestRelease
+        self.__latestUpdate = kext.latestUpdate
+        self.__latestVersion = kext.latestVersion
         self.__files = kext.files
+        self.__date = datetime.datetime.now().strftime('%Y/%m/%d')
         self.__transport = AIOHTTPTransport(url="https://api.github.com/graphql", headers={'Authorization': 'token ' + token})
         self.__client = Client(transport=self.__transport, fetch_schema_from_transport=True)
 
@@ -147,7 +150,7 @@ class downloader(object):
         try:
             tag = self.__queryLatestTag()
             print("Release tag: %s" % (tag))
-            if tag > self.__latestRelease :
+            if tag > self.__latestVersion :
                 # 删除老文件
                 RemoveKexts(self.__files)
                 self.__files = ''
@@ -172,10 +175,13 @@ class downloader(object):
                         self.__files += ', '
                     self.__files += '[' + key + '](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@main' + path + key + ')'
                 
-                # 更新latestRelease
-                self.__latestRelease = tag
+                # 更新latestUpdate
+                self.__latestUpdate = self.__date
 
-            return kext(self.__owner, self.__repositories, self.__latestRelease, self.__files)
+                # 更新latestVersion
+                self.__latestVersion = tag
+
+            return kext(self.__owner, self.__repositories, self.__latestVersion, self.__files)
 
         except (Exception) as e:
             print('ERROR:', e)
@@ -215,19 +221,20 @@ def GetKextsList():
                 repositories = info[0].strip()
                 repositories = repositories[repositories.find('[') + 1: repositories.find(']')]
                 owner = info[1].strip()
-                latestRelease = info[2].strip()
-                files = info[3].strip()
-                kextList.append(kext(owner, repositories, latestRelease, files))
+                latestUpdate = info[2].strip()
+                latestVersion = info[3].strip()
+                files = info[4].strip()
+                kextList.append(kext(owner, repositories, latestVersion, files))
             i += 1
     return kextList
 
 def CreatReadme(kextList):
     if not os.path.exists('README.md'):
         f = open('README.md', 'a')
-        f.write("| Repositories | Developer | Latest release | Files                           |\n")
-        f.write("|:-------------|:----------|:---------------|:--------------------------------|\n")
+        f.write("| Repositories | Developer | Latest Update | Latest Version | Files                           |\n")
+        f.write("|:-------------|:----------|:--------------|:---------------|:--------------------------------|\n")
         for kext in kextList:
-            f.write("| [%s](https://github.com/%s/%s) | %s | %s | %s |\n" % (kext.repositories, kext.owner, kext.repositories, kext.owner, kext.latestRelease, kext.files))
+            f.write("| [%s](https://github.com/%s/%s) | %s | %s | %s | %s |\n" % (kext.repositories, kext.owner, kext.repositories, kext.owner, kext.latestUpdate, kext.latestVersion, kext.files))
         f.close()
 
 if __name__ == "__main__":
