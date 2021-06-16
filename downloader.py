@@ -153,7 +153,7 @@ class downloader(object):
             if tag > self.__latestVersion :
                 # 删除老文件
                 RemoveKexts(self.__files)
-                self.__files = ''
+                files = ''
 
                 # 下载新文件
                 FileCount = self.__queryReleasesFileCount(tag)
@@ -171,21 +171,20 @@ class downloader(object):
                     with open(pwd + path + key, "wb") as code:
                         code.write(r.content)
                      # 更新files
-                    if len(self.__files) > 0:
-                        self.__files += ', '
-                    self.__files += '[' + key + '](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@main' + path + key + ')'
+                    if len(files) > 0:
+                        files += ', '
+                    files += '[' + key + '](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@main' + path + key + ')'
                 
                 # 更新latestUpdate
                 self.__latestUpdate = self.__date
-
                 # 更新latestVersion
                 self.__latestVersion = tag
-
-            return kext(self.__owner, self.__repositories, self.__latestUpdate, self.__latestVersion, self.__files)
-
+                # 更新files
+                self.__files = files
         except (Exception) as e:
             print('ERROR:', e)
-            return kext(self.__owner, self.__repositories, ' ', ' ', ' ')
+        finally:
+            return kext(self.__owner, self.__repositories, self.__latestUpdate, self.__latestVersion, self.__files)
 
 def RemoveKexts(files):
     try:
