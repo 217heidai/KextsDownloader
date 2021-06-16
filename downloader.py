@@ -201,7 +201,7 @@ def RemoveKexts(files):
         # [AppleALC-1.5.7-DEBUG.zip](https://github.com/acidanthera/AppleALC/releases/download/1.5.7/AppleALC-1.5.7-DEBUG.zip), [AppleALC-1.5.7-RELEASE.zip'](https://github.com/acidanthera/AppleALC/releases/download/1.5.7/AppleALC-1.5.7-RELEASE.zip)
         fileList = files.split(", ")
         for item in fileList:
-            name = item[item.find('['):item.find(']')]
+            name = item[item.find('[') + 1:item.find(']')]
             if name.find('OpenCore') >= 0:
                 path = pwd + '/OpenCore/' + name
             else:
