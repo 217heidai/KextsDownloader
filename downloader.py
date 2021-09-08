@@ -33,7 +33,7 @@ class downloader(object):
                 if key == 'nodes':
                     for item in value:
                         # print(type(item))
-                        if 'tagName' in item.keys() and item['tagName'].find('alpha') < 0:
+                        if 'tagName' in item.keys() and item['tagName'].find('alpha') < 0 and item['tagName'].find('RC') < 0:
                             return item['tagName']
                 elif type(value) == dict:
                     queue.append(value)
@@ -150,7 +150,7 @@ class downloader(object):
         try:
             tag = self.__queryLatestTag()
             print("Release tag: %s" % (tag))
-            if tag > self.__latestVersion :
+            if not tag == self.__latestVersion : # 不相等，则更新
                 # 删除老文件
                 RemoveKexts(self.__files)
                 files = ''
