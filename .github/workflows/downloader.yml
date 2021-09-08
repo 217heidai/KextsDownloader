@@ -50,6 +50,12 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.ref }}
           
+      - name: Delete Workflow Runs
+        uses: GitRML/delete-workflow-runs@main
+        with:
+          retain_days: 30
+          keep_minimum_runs: 10
+
       - name: WeChat notification
         if: steps.commit.outputs.status == 'success' && !cancelled()
         run: curl https://sc.ftqq.com/${{ secrets.SERVERCHAN }}.send?text=Kexts更新完成
