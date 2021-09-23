@@ -173,7 +173,7 @@ class downloader(object):
                      # 更新files
                     if len(files) > 0:
                         files += ', '
-                    files += '[' + key + '](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@main' + path + key + ')'
+                    files += '[' + key + '](https://ghproxy.com/https://raw.githubusercontent.com/217heidai/KextsDownloader/main' + path + key + ')'
                 
                 # 更新latestUpdate
                 self.__latestUpdate = self.__date
