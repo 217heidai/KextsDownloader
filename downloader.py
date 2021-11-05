@@ -58,6 +58,8 @@ class downloader(object):
             for key, value in data.items():
                 if key == 'nodes':
                     for item in value:
+                        if item['name'].find('DEBUG')>=0 or item['name'].find('debug')>=0 or item['name'].find('Debug')>=0: # 抛弃DEBUG版本
+                            continue
                         fileList[item['name']] = item['downloadUrl']
                 elif type(value) == dict:
                     queue.append(value)
