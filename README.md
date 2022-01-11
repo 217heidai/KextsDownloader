@@ -1,6 +1,6 @@
 | Repositories | Developer | Latest Update | Latest Version | Files                           |
 |:-------------|:----------|:--------------|:---------------|:--------------------------------|
-| [OpenCorePkg](https://github.com/acidanthera/OpenCorePkg) | acidanthera | 2021/12/07 | 0.7.6 | [OpenCore-0.7.6-RELEASE.zip](https://ghproxy.com/https://raw.githubusercontent.com/217heidai/KextsDownloader/main/OpenCore/OpenCore-0.7.6-RELEASE.zip) |
+| [OpenCorePkg](https://github.com/acidanthera/OpenCorePkg) | acidanthera | 2022/01/12 | 0.7.7 | [OpenCore-0.7.7-RELEASE.zip](https://ghproxy.com/https://raw.githubusercontent.com/217heidai/KextsDownloader/main/OpenCore/OpenCore-0.7.7-RELEASE.zip) |
 | [AppleALC](https://github.com/acidanthera/AppleALC) | acidanthera | 2022/01/11 | 1.6.8 | [AppleALC-1.6.8-RELEASE.zip](https://ghproxy.com/https://raw.githubusercontent.com/217heidai/KextsDownloader/main/Kexts/AppleALC-1.6.8-RELEASE.zip) |
 | [IntelMausi](https://github.com/acidanthera/IntelMausi) | acidanthera | 2021/07/06 | 1.0.7 | [IntelMausi-1.0.7-DEBUG.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@main/Kexts/IntelMausi-1.0.7-DEBUG.zip), [IntelMausi-1.0.7-RELEASE.zip](https://cdn.jsdelivr.net/gh/217heidai/KextsDownloader@main/Kexts/IntelMausi-1.0.7-RELEASE.zip) |
 | [Lilu](https://github.com/acidanthera/Lilu) | acidanthera | 2022/01/11 | 1.5.9 | [Lilu-1.5.9-RELEASE.zip](https://ghproxy.com/https://raw.githubusercontent.com/217heidai/KextsDownloader/main/Kexts/Lilu-1.5.9-RELEASE.zip) |
