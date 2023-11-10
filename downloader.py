@@ -160,10 +160,11 @@ class downloader(object):
             files = ""
             for fileName in fileList:
                 print("File: %s" % (fileName))
-                files += "[%s](https://gh.ghproxy.com/https://github.com/%s/%s/releases/download/%s/%s)"%(fileName,self.__owner,self.__repositories,tag,fileName)
+                files += "[%s](https://gh.ghproxy.com/https://github.com/%s/%s/releases/download/%s/%s),"%(fileName,self.__owner,self.__repositories,tag,fileName)
 
             # 更新files
-            self.__files = files
+            self.__files = files[:-1]
+            print(self.__files)
             
             if not tag == self.__latestVersion : # 不相等，则更新
                 # 更新latestUpdate
