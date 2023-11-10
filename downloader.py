@@ -160,7 +160,7 @@ class downloader(object):
             files = ""
             for fileName in fileList:
                 print("File: %s" % (fileName))
-                files += "[%s](https://gh.ghproxy.com/https://github.com/%s/%s/releases/download/%s/%s),"%(fileName,self.__owner,self.__repositories,tag,fileName)
+                files += "[%s](https://ghproxy.com/https://github.com/%s/%s/releases/download/%s/%s),"%(fileName,self.__owner,self.__repositories,tag,fileName)
 
             # 更新files
             self.__files = files[:-1]
@@ -175,30 +175,6 @@ class downloader(object):
             print('ERROR:', e)
         finally:
             return kext(self.__owner, self.__repositories, self.__latestUpdate, self.__latestVersion, self.__files)
-
-def RemoveKexts(files):
-    try:
-        pwd = os.getcwd()
-        if os.path.exists(pwd + '/README.md'):
-            os.remove(pwd + '/README.md')
-
-        if not os.path.exists(pwd + '/OpenCore'):
-            os.mkdir(pwd + '/OpenCore')
-        if not os.path.exists(pwd + '/Kexts'):
-            os.mkdir(pwd + '/Kexts')
-
-        # [AppleALC-1.5.7-DEBUG.zip](https://github.com/acidanthera/AppleALC/releases/download/1.5.7/AppleALC-1.5.7-DEBUG.zip), [AppleALC-1.5.7-RELEASE.zip'](https://github.com/acidanthera/AppleALC/releases/download/1.5.7/AppleALC-1.5.7-RELEASE.zip)
-        fileList = files.split(", ")
-        for item in fileList:
-            name = item[item.find('[') + 1:item.find(']')]
-            if name.find('OpenCore') >= 0:
-                path = pwd + '/OpenCore/' + name
-            else:
-                path = pwd + '/Kexts/' + name
-            if os.path.exists(path):
-                os.remove(path)
-    except (Exception) as e:
-        print('ERROR:', e)
 
 def GetKextsList():
     kextList = []
@@ -232,11 +208,8 @@ if __name__ == "__main__":
     kextList = GetKextsList()
     kextListNew = []
     for item in kextList:
-        try:
-            new = downloader(item, tocken)
-            kextListNew.append(new.download())
-        except (Exception) as e:
-            print('ERROR:', e)
+        new = downloader(item, tocken)
+        kextListNew.append(new.download())
 
     # 生成README.md
     CreatReadme(kextListNew)
