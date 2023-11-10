@@ -25,7 +25,7 @@ jobs:
         run: |
           sudo timedatectl set-timezone "$TZ"
           python -m pip install --upgrade pip
-          pip install --pre gql[all]
+          pip install gql[all]
 
       - name: Download Kexts
         run: python downloader.py ${{ secrets.GITHUB_TOKEN }}

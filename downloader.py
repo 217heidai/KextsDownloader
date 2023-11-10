@@ -152,37 +152,24 @@ class downloader(object):
         try:
             tag = self.__queryLatestTag()
             print("Release tag: %s" % (tag))
-            if not tag == self.__latestVersion : # 不相等，则更新
-                # 删除老文件
-                RemoveKexts(self.__files)
-                files = ''
+            
+            FileCount = self.__queryReleasesFileCount(tag)
+            fileList = self.__queryReleasesFile(tag, FileCount)
+            print(fileList)
 
-                # 下载新文件
-                FileCount = self.__queryReleasesFileCount(tag)
-                fileList = self.__queryReleasesFile(tag, FileCount)
-                print(fileList)
-                pwd = os.getcwd()
-                for key,value in fileList.items():
-                    print("File: %s\nURL: %s" % (key, value))
-                    #https://shrill-pond-3e81.hunsh.workers.dev/https://github.com/217heidai/openssl_for_android/releases/download/1.1.1j/OpenSSL_1.1.1j_arm64-v8a.tar.gz
-                    r = requests.get(value)
-                    if key.find('OpenCore') >= 0:
-                        path = '/OpenCore/'
-                    else:
-                        path = '/Kexts/'
-                    with open(pwd + path + key, "wb") as code:
-                        code.write(r.content)
-                     # 更新files
-                    if len(files) > 0:
-                        files += ', '
-                    files += '[' + key + '](https://ghproxy.com/https://raw.githubusercontent.com/217heidai/KextsDownloader/main' + path + key + ')'
-                
+            files = ""
+            for fileName in fileList:
+                print("File: %s" % (fileName))
+                files += "[%s](https://gh.ghproxy.com/https://github.com/%s/%s/releases/download/%s/%s)"%(fileName,self.__owner,self.__repositories,tag,fileName)
+
+            # 更新files
+            self.__files = files
+            
+            if not tag == self.__latestVersion : # 不相等，则更新
                 # 更新latestUpdate
                 self.__latestUpdate = self.__date
                 # 更新latestVersion
                 self.__latestVersion = tag
-                # 更新files
-                self.__files = files
         except (Exception) as e:
             print('ERROR:', e)
         finally:
