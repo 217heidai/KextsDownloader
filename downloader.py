@@ -194,14 +194,14 @@ def GetKextsList():
     return kextList
 
 def CreatReadme(kextList):
-    pwd = os.getcwd()
-    if not os.path.exists(pwd + '/README.md'):
-        f = open(pwd + '/README.md', 'a')
+    fileName = os.getcwd() + '/README.md'
+    if os.path.exists(fileName):
+        os.remove(fileName)
+    with open(fileName, 'a') as f:
         f.write("| Repositories | Developer | Latest Update | Latest Version | Files                           |\n")
         f.write("|:-------------|:----------|:--------------|:---------------|:--------------------------------|\n")
         for kext in kextList:
             f.write("| [%s](https://github.com/%s/%s) | %s | %s | %s | %s |\n" % (kext.repositories, kext.owner, kext.repositories, kext.owner, kext.latestUpdate, kext.latestVersion, kext.files))
-        f.close()
 
 if __name__ == "__main__":
     tocken = sys.argv[1]
