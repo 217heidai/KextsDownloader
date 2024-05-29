@@ -28,34 +28,18 @@ jobs:
           pip install gql[all]
 
       - name: Download Kexts
-        run: python downloader.py ${{ secrets.GITHUB_TOKEN }}
+        id: update
+        run: |
+          python downloader.py ${{ secrets.GITHUB_TOKEN }}
+          echo "message=$(date)" >> $GITHUB_OUTPUT
 
       - name: Commit Changes
-        id: commit
-        run: |
-          if [ -z "$(git status --porcelain)" ]; then 
-              exit 0
-          else
-            echo "::set-output name=status::success"
-            git add .
-            git config --local user.email "217heidai@gmail.com"
-            git config --local user.name "217heidai"
-            git commit -m "Updated at $(date)" -a
-          fi
-            
-      - name: GitHub Push
-        if: steps.commit.outputs.status == 'success' && !cancelled()
-        uses: ad-m/github-push-action@master
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
+          commit_message: ${{ steps.update.outputs.message }}
           
-      - name: Delete Workflow Runs
-        uses: GitRML/delete-workflow-runs@main
+      - name: Delete workflow runs
+        uses: Mattraks/delete-workflow-runs@main
         with:
-          retain_days: 30
-          keep_minimum_runs: 10
-
-      - name: WeChat notification
-        if: steps.commit.outputs.status == 'success' && !cancelled()
-        run: curl https://sc.ftqq.com/${{ secrets.SERVERCHAN }}.send?text=Kexts更新完成
+          retain_days: 0
+          keep_minimum_runs: 5
