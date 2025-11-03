@@ -1,7 +1,7 @@
 | Repositories | Developer | Latest Update | Latest Version | Files                           |
 |:-------------|:----------|:--------------|:---------------|:--------------------------------|
-| [OpenCorePkg](https://github.com/acidanthera/OpenCorePkg) | acidanthera | 20250707 | 1.0.5 | [OpenCore-1.0.5-RELEASE.zip](https://ghfast.top/https://github.com/acidanthera/OpenCorePkg/releases/download/1.0.5/OpenCore-1.0.5-RELEASE.zip) |
-| [AppleALC](https://github.com/acidanthera/AppleALC) | acidanthera | 20250707 | 1.9.5 | [AppleALC-1.9.5-RELEASE.zip](https://ghfast.top/https://github.com/acidanthera/AppleALC/releases/download/1.9.5/AppleALC-1.9.5-RELEASE.zip) |
+| [OpenCorePkg](https://github.com/acidanthera/OpenCorePkg) | acidanthera | 20251103 | 1.0.6 | [OpenCore-1.0.6-RELEASE.zip](https://ghfast.top/https://github.com/acidanthera/OpenCorePkg/releases/download/1.0.6/OpenCore-1.0.6-RELEASE.zip) |
+| [AppleALC](https://github.com/acidanthera/AppleALC) | acidanthera | 20251103 | 1.9.6 | [AppleALC-1.9.6-RELEASE.zip](https://ghfast.top/https://github.com/acidanthera/AppleALC/releases/download/1.9.6/AppleALC-1.9.6-RELEASE.zip) |
 | [IntelMausi](https://github.com/acidanthera/IntelMausi) | acidanthera | 20241203 | 1.0.8 | [IntelMausi-1.0.8-RELEASE.zip](https://ghfast.top/https://github.com/acidanthera/IntelMausi/releases/download/1.0.8/IntelMausi-1.0.8-RELEASE.zip) |
 | [Lilu](https://github.com/acidanthera/Lilu) | acidanthera | 20250707 | 1.7.1 | [Lilu-1.7.1-RELEASE.zip](https://ghfast.top/https://github.com/acidanthera/Lilu/releases/download/1.7.1/Lilu-1.7.1-RELEASE.zip) |
 | [NVMeFix](https://github.com/acidanthera/NVMeFix) | acidanthera | 20250707 | 1.1.3 | [NVMeFix-1.1.3-RELEASE.zip](https://ghfast.top/https://github.com/acidanthera/NVMeFix/releases/download/1.1.3/NVMeFix-1.1.3-RELEASE.zip) |
