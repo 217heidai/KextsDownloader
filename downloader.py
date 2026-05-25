@@ -49,13 +49,14 @@ class DOWNLOADER(object):
                 
                 if len(self.__files) > 0:
                     break
-        except (Exception) as e:
-            logger.exception("%s" % (e))
-        finally:
+
             if len(self.__files) < 1: # 未获取到 release 资源，使用原有数据
                 self.__latestUpdate = self.__kext.latestUpdate
                 self.__latestVersion = self.__kext.latestVersion
                 self.__files = self.__kext.files
+            return KEXT(self.__kext.owner, self.__kext.repositories, self.__latestUpdate, self.__latestVersion, self.__files)
+        except (Exception) as e:
+            logger.exception("%s" % (e))
             return KEXT(self.__kext.owner, self.__kext.repositories, self.__latestUpdate, self.__latestVersion, self.__files)
 
 def GetKextsList():
