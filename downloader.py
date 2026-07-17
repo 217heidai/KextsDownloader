@@ -29,6 +29,7 @@ class DOWNLOADER(object):
             response = self.__client.get(url)
             response.raise_for_status()
             releaselist = response.json()
+            logger.info(releaselist)
             for release in releaselist:
                 tag = release.get("tag_name", None)
                 assets = release.get("assets", [])
