@@ -19,7 +19,11 @@ class DOWNLOADER(object):
         self.__latestVersion = ''
         self.__files = []
 
-        self.__client = httpx.Client(http2=True)
+        headers = {
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"
+        }
+        self.__client = httpx.Client(http2=True, headers=headers)
 
     def download(self):
         try:
@@ -49,16 +53,15 @@ class DOWNLOADER(object):
                     self.__latestVersion = tag
                 
                 if len(self.__files) > 0:
+                    self.__kext.latestUpdate = self.__latestUpdate
+                    self.__kext.latestVersion = self.__latestVersion
+                    self.__kext.files = self.__files
                     break
 
-            if len(self.__files) < 1: # 未获取到 release 资源，使用原有数据
-                self.__latestUpdate = self.__kext.latestUpdate
-                self.__latestVersion = self.__kext.latestVersion
-                self.__files = self.__kext.files
-            return KEXT(self.__kext.owner, self.__kext.repositories, self.__latestUpdate, self.__latestVersion, self.__files)
+            return self.__kext
         except (Exception) as e:
             logger.exception("%s" % (e))
-            return KEXT(self.__kext.owner, self.__kext.repositories, self.__latestUpdate, self.__latestVersion, self.__files)
+            return self.__kext
 
 def GetKextsList():
     kextList = []
