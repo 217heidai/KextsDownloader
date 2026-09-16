@@ -20,3 +20,4 @@
 | [RealtekCardReaderFriend](https://github.com/0xFireWolf/RealtekCardReaderFriend) | 0xFireWolf | 20221025 | v1.0.4 | [RealtekCardReaderFriend_1.0.4_e1e3301_RELEASE.zip](https://ghfast.top/https://github.com/0xFireWolf/RealtekCardReaderFriend/releases/download/v1.0.4/RealtekCardReaderFriend_1.0.4_e1e3301_RELEASE.zip) |
 | [BrcmPatchRAM](https://github.com/acidanthera/BrcmPatchRAM) | acidanthera | 20260320 | 2.7.2 | [BrcmPatchRAM-2.7.2-RELEASE.zip](https://ghfast.top/https://github.com/acidanthera/BrcmPatchRAM/releases/download/2.7.2/BrcmPatchRAM-2.7.2-RELEASE.zip) |
 | [RestrictEvents](https://github.com/acidanthera/RestrictEvents) | acidanthera | 20250707 | 1.1.6 | [RestrictEvents-1.1.6-RELEASE.zip](https://ghfast.top/https://github.com/acidanthera/RestrictEvents/releases/download/1.1.6/RestrictEvents-1.1.6-RELEASE.zip) |
+| [RestrictEvents](https://github.com/Carnations-Botanica/iBridged) | Carnations-Botanica |  |  |  |
